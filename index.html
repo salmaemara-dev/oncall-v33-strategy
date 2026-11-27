@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>On Call × V33 Strategy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=IBM+Plex+Sans+Arabic:wght@500;600&family=Quicksand:wght@500;600;700&display=swap">
+<style>
+/* VOICE: a calm strategic partner talking to two clinic owners; confident, never salesy.
+   IDEA: the on call. symbol: an open ring of care that the dot arrives to close.
+   PICTURE: the live ring drawing itself in the hero, pillar marks marking each stage.
+   COLOUR and TYPE: on call. green, cool ivory, mint sage, one apricot accent; Quicksand heads, DM Sans text, Fraunces for single statements.
+   LAYOUT: full-width green and ivory bands, floating pill nav, interactive panels in soft rounded cards. */
+:root{color-scheme:light dark;
+--green:#0f4540;--ivory:#f2f4ef;--char:#171c1b;--sage:#b4d2c2;--apri:#ffa382;
+--bg:light-dark(#f2f4ef,#0b3632);--ink:light-dark(#171c1b,#f2f4ef);--mute:light-dark(#4f5b58,#b4d2c2);
+--card:light-dark(#ffffff,#134f49);--sunk:light-dark(#e6ebe4,#0f4540);--acc:light-dark(#0f4540,#ffa382);
+--hair:light-dark(rgba(23,28,27,.14),rgba(242,244,239,.2));--mk:light-dark(#0f4540,#f2f4ef);--mkstop:light-dark(#0f4540,#ffa382);
+--act:light-dark(#0f4540,#ffa382);--onact:light-dark(#f2f4ef,#171c1b)}
+:root[data-theme=light]{color-scheme:light}:root[data-theme=dark]{color-scheme:dark}
+*{box-sizing:border-box;min-width:0}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 "DM Sans","IBM Plex Sans Arabic",system-ui,sans-serif;overflow-x:clip;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:Quicksand,"DM Sans",sans-serif;font-weight:700;letter-spacing:-.02em;line-height:1.08;margin:0;text-wrap:balance}
+h2{font-size:clamp(32px,4.4vw,52px)}h3{font-size:22px;line-height:1.2}
+p{margin:0}
+a{color:var(--acc)}
+.wrap{max-width:1240px;margin:0 auto}
+.band{padding:clamp(56px,7vw,112px) max(5vw,16px)}
+.dark{--bg:#0f4540;--ink:#f2f4ef;--mute:#b4d2c2;--card:#134f49;--sunk:#0b3632;--acc:#ffa382;--hair:rgba(242,244,239,.2);--mk:#f2f4ef;--mkstop:#ffa382;--act:#ffa382;--onact:#171c1b;background:var(--bg);color:var(--ink);color-scheme:dark}
+.sunkband{background:var(--sunk)}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:6px 14px;border-radius:999px;background:var(--sunk);color:var(--acc);font-size:14px;font-weight:600;width:fit-content}
+.dark .pill,.sunkband .pill{background:var(--card)}
+.pill::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--apri)}
+.head{display:grid;gap:16px;margin-bottom:clamp(28px,4vw,48px);max-width:820px}
+.lead{font-size:19px;color:var(--mute);max-width:66ch}
+.stop{color:var(--apri)}
+.grid{display:grid;gap:20px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr))}
+.g5{grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr))}
+.card{background:var(--card);border-radius:24px;padding:28px;display:grid;gap:10px;align-content:start}
+.card p{color:var(--mute)}
+.card.inv{background:var(--green);color:var(--ivory);--mute:#b4d2c2;--acc:#ffa382;--mk:#f2f4ef;--mkstop:#ffa382}
+.card.ap{background:var(--apri);color:var(--char);--mute:#171c1b;--acc:#171c1b}
+.lbl{font-size:14px;font-weight:600;color:var(--acc)}
+.num{font-family:Quicksand,sans-serif;font-weight:700;color:var(--acc);font-size:18px}
+ul.dots{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+ul.dots li{display:grid;grid-template-columns:10px 1fr;gap:12px;align-items:baseline;color:var(--mute)}
+ul.dots li::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--apri);transform:translateY(-2px)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:8px 14px;border-radius:999px;background:var(--sunk);font-size:15px;font-weight:500}
+.card .chip{background:var(--sunk)}.card.inv .chip{background:#134f49;color:#f2f4ef}
+.statement{font-family:Fraunces,Georgia,serif;font-size:clamp(22px,2.6vw,32px);line-height:1.3;font-weight:400;max-width:30ch}
+button{font:inherit;color:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.lg-ink{fill:var(--mk)}.lg-stop{fill:var(--mkstop)}.ring{fill:none;stroke:var(--mk);stroke-width:32;stroke-linecap:round}.dot{fill:var(--mkstop)}
+.sig .dot{fill:var(--apri)}
+/* nav */
+.nav{position:sticky;top:12px;z-index:9;margin:12px max(3vw,12px) 0;display:flex;align-items:center;gap:16px;padding:8px 8px 8px 20px;border-radius:999px;background:color-mix(in srgb,var(--card) 92%,transparent);backdrop-filter:blur(10px);box-shadow:0 6px 24px rgba(15,69,64,.08)}
+.nav .links{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;flex:1}
+.nav .links a{flex:none;padding:10px 14px;border-radius:999px;color:var(--ink);text-decoration:none;font-size:15px;font-weight:500;min-height:44px;display:flex;align-items:center}
+.nav .links a.on{background:var(--sunk);color:var(--acc)}
+.nav .cta{flex:none;background:var(--act);color:var(--onact);border-radius:999px;padding:10px 18px;text-decoration:none;font-weight:600;font-size:15px;min-height:44px;display:flex;align-items:center}
+@media(max-width:820px){.nav .cta{display:none}}
+/* hero */
+.hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:center;padding-top:clamp(40px,6vw,80px)}
+.hero h1{font-size:clamp(44px,6.4vw,92px);line-height:1}
+.hero .meta{display:flex;flex-wrap:wrap;gap:12px 28px;color:var(--mute);font-size:15px;border-top:1px solid var(--hair);padding-top:20px}
+.hero .meta b{display:block;color:var(--ink);font-weight:600}
+.stage{position:relative;aspect-ratio:1;border-radius:40px;background:#134f49;overflow:hidden;display:grid;place-items:center}
+.stage .big{width:72%;height:auto}
+.stage .ring{stroke-dasharray:420;stroke-dashoffset:420;animation:draw 1.6s cubic-bezier(.6,.1,.2,1) .2s forwards}
+.stage .dot{transform-box:fill-box;transform-origin:center;transform:scale(0);animation:pop .6s cubic-bezier(.3,1.6,.4,1) 1.6s forwards}
+.stage .cap{position:absolute;left:24px;right:24px;bottom:22px;display:flex;justify-content:space-between;gap:12px;color:#b4d2c2;font-size:14px}
+@keyframes draw{to{stroke-dashoffset:0}}@keyframes pop{to{transform:scale(1)}}
+@media(max-width:760px){.hero{grid-template-columns:1fr}.stage{max-width:420px;width:100%}}
+/* reveal */
+.rv{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.stage .ring{stroke-dashoffset:0;animation:none}.stage .dot{transform:none;animation:none}html{scroll-behavior:auto}}
+/* priorities */
+.ladder{display:grid;gap:10px}
+.rung{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:16px;align-items:center;text-align:start;background:var(--card);border:1px solid transparent;border-radius:20px;padding:16px 20px;min-height:64px;transition:border-color .25s,background .25s}
+.rung:hover{border-color:var(--sage)}
+.rung[aria-expanded=true]{background:var(--apri);color:var(--char)}
+.rung .p{font-family:Quicksand;font-weight:700;font-size:22px}
+.rung .t{font-family:Quicksand;font-weight:700;font-size:20px}
+.rung .w{font-size:13px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--sunk);color:var(--ink);white-space:nowrap}
+.rung[aria-expanded=true] .w{background:#171c1b;color:#f2f4ef}
+.rdetail{padding:4px 24px 14px 108px;color:var(--mute)}
+@media(max-width:600px){.rung{grid-template-columns:52px 1fr}.rung .w{grid-column:2}.rdetail{padding-left:20px}}
+/* funnel */
+.funnel{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-bottom:20px}
+.fstep{border:0;border-radius:18px;padding:18px 14px;min-height:96px;background:var(--card);display:grid;align-content:space-between;gap:8px;text-align:start;transition:background .25s,transform .25s}
+.fstep .n{font-size:13px;font-weight:600;color:var(--mute)}
+.fstep .s{font-family:Quicksand;font-weight:700;font-size:18px;line-height:1.15}
+.fstep .bar{height:6px;border-radius:6px;background:var(--hair)}
+.fstep .bar i{display:block;height:100%;border-radius:6px;background:var(--apri)}
+.fstep[aria-selected=true]{background:var(--green);color:#f2f4ef;--mute:#b4d2c2;transform:translateY(-4px)}
+@media(max-width:700px){.funnel{grid-template-columns:1fr 1fr}}
+.fpanel{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:20px}
+@media(max-width:760px){.fpanel{grid-template-columns:1fr}}
+.owner{display:flex;gap:8px;flex-wrap:wrap}
+/* positioning */
+.hyp{font-family:Fraunces,Georgia,serif;font-size:clamp(28px,3.6vw,46px);line-height:1.18;max-width:24ch}
+.flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.flow span.st{padding:14px 20px;border-radius:999px;background:var(--card);font-weight:600}
+.flow span.ar{color:var(--apri);font-weight:700}
+.marks{display:flex;flex-wrap:wrap;gap:18px 28px;align-items:center}
+/* tabs */
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.tab{border:1px solid var(--hair);background:transparent;border-radius:999px;padding:10px 18px;min-height:44px;font-weight:600;font-size:15px}
+.tab[aria-selected=true]{background:var(--act);color:var(--onact);border-color:transparent}
+.tpanel{background:var(--card);border-radius:24px;padding:clamp(22px,3vw,36px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}
+.tpanel h3{font-size:clamp(24px,2.6vw,34px)}
+@media(max-width:760px){.tpanel{grid-template-columns:1fr}}
+.out{background:var(--sunk);border-radius:18px;padding:20px;display:grid;gap:10px}
+/* series */
+.series .ar{font-family:"IBM Plex Sans Arabic",sans-serif;font-weight:600;font-size:21px;line-height:1.5;color:var(--ink)}
+table{width:100%;border-collapse:collapse;font-size:15.5px}
+th{text-align:start;font-size:13px;color:var(--mute);font-weight:600;padding:10px 12px;border-bottom:1px solid var(--hair)}
+td{padding:14px 12px;border-bottom:1px solid var(--hair);vertical-align:top}
+td:first-child{font-family:Quicksand;font-weight:700;white-space:nowrap}
+.tw{background:var(--card);border-radius:24px;padding:12px 16px}
+.yes{color:var(--acc);font-weight:600}.no{color:var(--mute)}
+/* checklist */
+.check{display:grid;gap:8px}
+.check label{display:grid;grid-template-columns:28px 1fr;gap:12px;align-items:center;background:var(--card);border-radius:16px;padding:12px 16px;min-height:52px;cursor:pointer}
+.check input{appearance:none;width:24px;height:24px;border-radius:50%;border:2px solid var(--mute);margin:0;display:grid;place-items:center;cursor:pointer}
+.check input:checked{background:var(--apri);border-color:var(--apri)}
+.check input:checked::after{content:"";width:8px;height:8px;border-radius:50%;background:#171c1b}
+.check input:checked+span{color:var(--mute);text-decoration:line-through;text-decoration-color:var(--apri)}
+.meter{height:10px;border-radius:10px;background:var(--hair);overflow:hidden}.meter i{display:block;height:100%;background:var(--apri);width:0;transition:width .4s}
+/* roadmap */
+.phase{position:relative}
+.phase .when{font-family:Quicksand;font-weight:700;font-size:28px}
+.timeline{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;position:relative}
+@media(max-width:820px){.timeline{grid-template-columns:1fr}}
+/* closing */
+.close{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:end}
+@media(max-width:760px){.close{grid-template-columns:1fr}}
+footer{padding:28px max(5vw,16px);display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center;color:#b4d2c2;font-size:14px;background:#0b3632}
+.note{font-size:14px;color:var(--mute)}
+@media(max-width:600px){table{font-size:14px}.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--hair)}.stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:8em;text-align:start;white-space:normal}.stack td::before{content:attr(data-l);float:inline-start;width:7.5em;margin-inline-start:-8em;color:var(--mute);font:600 12px "DM Sans",sans-serif}}
+</style>
+<script>new MutationObserver(()=>{for(const c of document.querySelectorAll('.stack td:not([data-l])')){let i=0,p=c;while(p=p.previousElementSibling)i+=p.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}}).observe(document,{childList:true,subtree:true})</script>
+</head>
+<body>
+
+<nav class="nav" aria-label="Sections">
+  <a href="#top" aria-label="on call. home" style="flex:none;display:flex"><span data-logo="wordmark" data-h="26"></span></a>
+  <div class="links">
+    <a href="#direction">Direction</a><a href="#priorities">Priorities</a><a href="#funnel">Funnel</a><a href="#brand">Brand</a><a href="#channels">Channels</a><a href="#content">Content</a><a href="#trial">30 days</a><a href="#kpis">KPIs</a><a href="#roadmap">Roadmap</a><a href="#together">Together</a>
+  </div>
+  <a class="cta" href="#trial">See the 30-day plan</a>
+</nav>
+
+<header id="top" class="band">
+  <div class="wrap hero">
+    <div class="grid" style="gap:24px">
+      <span class="pill">On Call × V33 Physiotherapy Clinic</span>
+      <h1>Build awareness first. Develop demand over time<span class="stop">.</span></h1>
+      <p class="lead">A digital-first brand and growth strategy: a complimentary 30-day trial, then a long-term roadmap for V33 in Nasr City.</p>
+      <div class="meta">
+        <span><b>Prepared for</b>V33 Physiotherapy Clinic</span>
+        <span><b>Prepared by</b>Salma Emara, Founder &amp; CEO, On Call</span>
+        <span><b>Date</b>27 November 2026</span>
+      </div>
+    </div>
+    <div class="stage dark" role="img" aria-label="The on call. symbol: an open ring of care, closed by the dot">
+      <span data-logo="symbol" data-h="0" data-class="big"></span>
+      <div class="cap"><span>Status: proposed strategy, subject to joint approval</span><span>01 / 30 days</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="direction" class="band dark">
+  <div class="wrap">
+    <div class="head rv"><span class="pill">Executive direction</span><h2>Awareness is the foundation, not the promise.</h2>
+      <p class="lead">We propose a digital-first partnership that makes V33 more recognizable, explains its expertise clearly and builds a reliable digital presence. Month one is about top-of-funnel awareness and professional credibility, not sales promises.</p></div>
+    <div class="grid g2">
+      <div class="card rv"><span class="lbl">First-month focus</span><h3>Six foundations we build in the trial.</h3>
+        <div class="chips"><span class="chip">Digital positioning</span><span class="chip">Social media strategy</span><span class="chip">Informative content</span><span class="chip">Profile clarity</span><span class="chip">Local discoverability</span><span class="chip">Measurement foundations</span></div></div>
+      <div class="card rv"><span class="lbl">Longer-term ambition</span><h3>Connect visibility to the business, as evidence grows.</h3>
+        <p>Support V33's commercial objectives over time, and assess readiness for a potential second branch once there is real data to decide with.</p></div>
+    </div>
+    <p class="statement rv" style="margin-top:44px">“Awareness is a foundation, not a guarantee of bookings or revenue.”</p>
+  </div>
+</section>
+
+<section id="known" class="band">
+  <div class="wrap">
+    <div class="head rv"><span class="pill">What we know</span><h2>We start from what you already told us.</h2>
+      <p class="lead">Your needs assessment is done, so we won't repeat the questionnaire. We'll only ask for the missing practical inputs.</p></div>
+    <div class="grid g3" id="facts"></div>
+    <div class="card inv rv" style="margin-top:20px"><span class="lbl">What we'll ask you for</span>
+      <div class="chips"><span class="chip">Account links</span><span class="chip">Existing analytics</span><span class="chip">Brand assets</span><span class="chip">Approved service facts</span><span class="chip">Clinic contact information</span><span class="chip">Approval contacts</span></div></div>
+  </div>
+</section>
+
+<section id="priorities" class="band sunkband">
+  <div class="wrap">
+    <div class="head rv"><span class="pill">Strategic objectives</span><h2>Five priorities, in this order.</h2>
+      <p class="lead">Each step builds on the one before. Select a priority to see how we approach it.</p></div>
+    <div class="ladder" id="ladder"></div>
+  </div>
+</section>
+
+<section id="funnel" class="band">
+  <div class="wrap">
+    <div class="head rv"><span class="pill">Marketing funnel</span><h2>From awareness to continued care.</h2>
+      <p class="lead">Month one puts most effort into the first two stages, while making sure basic contact pathways work from day one. The bar on each stage shows its share of first-month effort.</p></div>
+    <div class="funnel" role="tablist" aria-label="Funnel stages" id="funnelTabs"></div>
+    <div class="fpanel" id="funnelPanel" role="tabpanel"></div>
+  </div>
+</section>
+
+<section id="brand" class="band dark">
+  <div class="wrap grid" style="gap:40px">
+    <div class="head rv" style="margin:0"><span class="pill">Digital brand positioning</span>
+      <span data-logo="pillar-brand" data-h="40"></span>
+      <p class="lbl">Working positioning hypothesis</p>
+      <p class="hyp">V33: physiotherapy with a clear focus on spine and post-operative rehabilitation.</p>
+      <p class="lead">A working direction to confirm with you, not a claim about treatments or outcomes that aren't yet verified.</p></div>
+    <div class="grid rv" style="gap:14px"><p class="lbl">Message hierarchy</p>
+      <div class="flow"><span class="st">What V33 does</span><span class="ar">→</span><span class="st">Who it serves</span><span class="ar">→</span><span class="st">How to learn more or contact the clinic</span></div></div>
+    <div class="grid g3" id="brandActs"></div>
+    <div class="card ap rv"><span class="lbl">Outputs</span><div class="chips"><span class="chip" style="background:#f2f4ef">Mini digital brand brief</span><span class="chip" style="background:#f2f4ef">Messaging hierarchy</span><span class="chip" style="background:#f2f4ef">Updated bio drafts</span><span class="chip" style="background:#f2f4ef">Visual moodboard</span><span class="chip" style="background:#f2f4ef">Profile consistency checklist</span></div></div>
+  </div>
+</section>
+
+<section id="channels" class="band">
+  <div class="wrap">
+    <div class="head rv"><span class="pill">Digital marketing</span>
+      <div class="marks"><span data-logo="pillar-growth" data-h="34"></span><span data-logo="pillar-digital" data-h="34"></span></div>
+      <h2>Every channel gets one clear job.</h2></div>
+    <div class="tabs" role="tablist" aria-label="Channels" id="chTabs"></div>
+    <div class="tpanel" id="chPanel" role="tabpanel"></div>
+    <div class="grid g2" style="margin-top:20px">
+      <div class="card rv"><span class="lbl">A · Channel audit and discoverability</span>
+        <ul class="dots"><li>Review Instagram and Facebook posts, format mix, activity and available analytics.</li><li>Test the website on mobile: services, hours, address and contact paths.</li><li>Check the Google Business Profile (if owned or eligible): pin, hours, contact.</li><li>Compare a few nearby competitors' public positioning, with no impersonation or fake inquiries.</li><li>Align the clinic name, location and main contact across channels.</li></ul></div>
+      <div class="card rv"><span class="lbl">C · Contact-experience improvements</span>
+        <ul class="dots"><li>Map the journey from profile visit or search to an administrative inquiry.</li><li>Suggest approved profile links and contact-button fixes.</li><li>Draft administrative WhatsApp quick replies: location, hours, availability, process.</li><li>Propose a privacy-conscious inquiry tracker using aggregate or minimal data.</li><li>Find friction points and rank fixes for V33 to approve.</li></ul></div>
+    </div>
+    <div class="card inv rv" style="margin-top:20px"><span class="lbl">D · Paid marketing</span><p>During the trial we prepare campaign hypotheses only: no ad spend and no paid-media management. Paid activity comes later, only after healthcare advertising rules, permissions and approvals are confirmed, and never with unsupported medical claims or patient stories used without lawful permission.</p></div>
+  </div>
+</section>
+
+<section id="content" class="band sunkband">
+  <div class="wrap">
+    <div class="head rv"><span class="pill">Social media and content</span><h2>Five recurring series, one recognizable voice.</h2>
+      <p class="lead">Arabic first, English when it helps. All clinical information goes to V33's qualified reviewer, and we never give individual clinical advice in comments or DMs.</p></div>
+    <div class="grid g5 series" id="series"></div>
+    <div class="grid g2" style="margin-top:28px;align-items:start">
+      <div class="tw rv"><table class="stack"><thead><tr><th>Week</th><th>Main theme</th><th>Reel concept</th><th>Supporting post or story</th></tr></thead><tbody id="weeks"></tbody></table>
+        <p class="note" style="padding:12px">A planning deliverable, not an agreement to produce and publish everything during the free trial.</p></div>
+      <div class="card rv"><span class="lbl">How every piece is planned</span>
+        <div class="chips"><span class="chip">Topic</span><span class="chip">Audience</span><span class="chip">Educational message</span><span class="chip">Hook</span><span class="chip">Format</span><span class="chip">CTA</span><span class="chip">Channel</span><span class="chip">Reviewer</span><span class="chip">Status</span></div>
+        <span class="lbl" style="margin-top:10px">Trial content deliverables</span>
+        <ul class="dots"><li>A 30-day content calendar: reels, carousels, static posts and stories</li><li>3 reel scripts and 2 carousel outlines</li><li>2 adaptable layout directions</li><li>A filming brief for the next production phase</li><li>Accessibility built in: subtitles, readable graphics, clear captions</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="trial" class="band dark">
+  <div class="wrap">
+    <div class="head rv"><span class="pill">Complimentary 30-day trial</span><h2>Four weeks. One clear roadmap.</h2>
+      <p class="lead">Pick a week to see the work and what you receive.</p></div>
+    <div class="tabs" role="tablist" aria-label="Trial weeks" id="wkTabs"></div>
+    <div class="tpanel" id="wkPanel" role="tabpanel"></div>
+    <div class="grid g2" style="margin-top:28px;align-items:start">
+      <div class="grid" style="gap:12px">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;gap:12px"><h3>Trial quick wins</h3><span class="note" id="qwCount" aria-live="polite"></span></div>
+        <div class="meter" aria-hidden="true"><i id="qwBar"></i></div>
+        <div class="check" id="qw"></div>
+        <p class="note">Tick items off together during the trial. Your ticks are saved in this browser only.</p>
+      </div>
+      <div class="card ap"><span class="lbl">Trial creative boundaries</span>
+        <h3>Up to two basic pilot asset drafts.</h3>
+        <p>We make these from existing or client-supplied material, with agreed production effort. Publishing isn't included by default. It needs specific written approval, clinical review and regulatory clearance.</p>
+        <span class="lbl" style="margin-top:8px">Not included in the trial</span>
+        <div class="chips"><span class="chip" style="background:#f2f4ef">New filming</span><span class="chip" style="background:#f2f4ef">Elaborate editing</span><span class="chip" style="background:#f2f4ef">Daily management</span><span class="chip" style="background:#f2f4ef">Ad spend</span><span class="chip" style="background:#f2f4ef">Website development</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="kpis" class="band">
+  <div class="wrap">
+    <div class="head rv"><span class="pill">KPIs</span><h2>Awareness first. Commercial insight later.</h2>
+      <p class="lead">We record a baseline, agree definitions, review trends and adapt. We don't guarantee fixed increases, revenue, session volumes, patient counts, conversion rates or a branch-opening date.</p></div>
+    <div class="tabs" role="tablist" aria-label="KPI tiers" id="kTabs"></div>
+    <div class="tpanel" id="kPanel" role="tabpanel"></div>
+  </div>
+</section>
+
+<section id="roadmap" class="band sunkband">
+  <div class="wrap">
+    <div class="head rv"><span class="pill">After the trial</span><h2>A staged path through the first year.</h2>
+      <p class="lead">The sequence is flexible: where it suits, conversion improvements can start earlier, and top-of-funnel work and contact usability can move together.</p></div>
+    <div class="timeline" id="phases"></div>
+  </div>
+</section>
+
+<section id="scope" class="band">
+  <div class="wrap">
+    <div class="head rv"><span class="pill">Trial vs. paid implementation</span><h2>What the trial covers, and what comes later.</h2></div>
+    <div class="tw rv"><table class="stack"><thead><tr><th>Workstream</th><th>Complimentary 30 days</th><th>Later paid scope, if agreed</th></tr></thead><tbody id="scopeRows"></tbody></table></div>
+    <p class="note" style="margin-top:14px">The trial never converts automatically to a paid contract. Any paid scope follows a separate written statement of work.</p>
+  </div>
+</section>
+
+<section id="together" class="band dark">
+  <div class="wrap">
+    <div class="head rv"><span class="pill">Roles, approvals and safeguards</span><h2>How we work together.</h2></div>
+    <div class="grid g3">
+      <div class="card rv"><span class="lbl">On Call</span><ul class="dots"><li>Lead the digital audit, creative and marketing planning, and the reporting framework.</li><li>Develop the agreed trial deliverables and present a final roadmap.</li><li>Track scope, and get review and approval before any client-facing change.</li></ul></div>
+      <div class="card rv"><span class="lbl">V33 and its partners</span><ul class="dots"><li>Share links, insights, brand materials, approved clinic details and priorities.</li><li>Name one coordinating contact and a qualified clinical reviewer.</li><li>Give timely feedback and written approval for changes, medical content and any publishing.</li><li>Stay responsible for clinical care, patient records, appointments and business decisions.</li></ul></div>
+      <div class="card ap rv"><span class="lbl">Safeguards</span><ul class="dots"><li>No identifiable patient health records in marketing reports.</li><li>Consent-based, minimum-necessary contact data and secure access.</li><li>Egyptian healthcare advertising rules checked with qualified counsel before any promotion.</li><li>No testimonials, photos or clinical stories without consent and legal clearance.</li><li>Agreed support hours only. On Call is a name, not a 24/7 promise.</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="handover" class="band">
+  <div class="wrap">
+    <div class="head rv"><span class="pill">Day 30 handover</span><h2>What you'll have at the end of the month.</h2>
+      <p class="lead">The decision to continue rests entirely with V33 and its partners.</p></div>
+    <div class="grid g3" id="handoverGrid"></div>
+  </div>
+</section>
+
+<section class="band dark">
+  <div class="wrap close">
+    <div class="grid" style="gap:22px">
+      <span class="pill">Our commitment</span>
+      <p class="statement" style="max-width:26ch">Build awareness today. Create the conditions for trust and consideration. Support sustainable business opportunities over time.</p>
+      <p class="lead">We commit to the agreed strategic and creative work, thoughtful recommendations, clear documentation and professional coordination. We don't promise particular reach, patient volumes, bookings, revenue, profit or expansion outcomes. Those depend on clinical quality, patient needs, access, market conditions and operations too.</p>
+    </div>
+    <div class="grid" style="gap:16px;justify-items:start">
+      <span data-logo="wordmark" data-h="70"></span>
+      <p style="font-family:Quicksand;font-weight:700;font-size:26px;line-height:1.2">Your Business Partner, When You Need One<span class="stop">.</span></p>
+      <p class="lead" style="font-size:16px"><b style="color:#f2f4ef">Salma Emara</b><br>Strategist, Founder &amp; CEO, On Call</p>
+    </div>
+  </div>
+</section>
+<footer><span data-logo="mono" data-h="28" style="--mk:#f2f4ef;--mkstop:#ffa382"></span><span>On Call × V33 Physiotherapy Clinic · Proposed strategy, subject to joint approval · 27 November 2026</span></footer>
+
+<script>
+{
+const LOGO={"wordmark":{"l":"M100 -50C100 -32.18 90.52 -15.71 75.1 -6.76C59.63 2.22 40.55 2.25 25.05 -6.67C9.6 -15.56 0.06 -32.01 0 -49.83C0 -49.85 0 -49.88 0 -49.91C0 -49.94 0 -49.97 0 -50C-0 -67.82 9.48 -84.29 24.9 -93.24C40.37 -102.22 59.45 -102.25 74.95 -93.33C90.4 -84.44 99.94 -67.99 100 -50.17C100 -50.14 100 -50.1 100 -50.06C100 -50.04 100 -50.02 100 -50ZM20 -49.9C20 -49.92 20 -49.94 20 -49.97L20 -50C20 -60.69 25.69 -70.58 34.94 -75.95C44.22 -81.33 55.67 -81.35 64.97 -76C74.24 -70.66 79.96 -60.79 80 -50.1C80 -50.08 80 -50.06 80 -50.04L80 -50C80 -39.31 74.31 -29.42 65.06 -24.05C55.78 -18.67 44.33 -18.65 35.03 -24C25.76 -29.34 20.04 -39.21 20 -49.9ZM113 -10C113 -4.48 117.48 0 123 0C128.52 0 133 -4.48 133 -10L133 -53C133 -67.91 145.09 -80 160 -80C174.91 -80 187 -67.91 187 -53L187 -10C187 -4.48 191.48 0 197 0C202.52 0 207 -4.48 207 -10L207 -53C207 -78.96 185.96 -100 160 -100C149.91 -100 140.56 -96.82 132.9 -91.41C132.22 -96.26 128.05 -100 123 -100C117.48 -100 113 -95.52 113 -90ZM339.77 -79.73C339.77 -82.69 338.47 -85.36 336.42 -87.19C316.4 -105.18 285.73 -104.1 267.03 -84.73C248.32 -65.36 248.32 -34.64 267.03 -15.27C285.73 4.1 316.4 5.18 336.42 -12.81C338.47 -14.64 339.77 -17.31 339.77 -20.27C339.77 -25.8 335.29 -30.27 329.77 -30.27C327.18 -30.27 324.82 -29.29 323.05 -27.68C311.04 -16.89 292.64 -17.54 281.42 -29.16C270.19 -40.79 270.19 -59.21 281.42 -70.84C292.64 -82.46 311.04 -83.11 323.05 -72.32C324.82 -70.71 327.18 -69.73 329.77 -69.73C335.29 -69.73 339.77 -74.2 339.77 -79.73ZM434.4 -10C434.4 -4.48 438.88 0 444.4 0C449.92 0 454.4 -4.48 454.4 -10L454.4 -90C454.4 -95.52 449.92 -100 444.4 -100C438.88 -100 434.4 -95.52 434.4 -90L434.4 -89.7C432.68 -91.02 430.86 -92.23 428.95 -93.33C413.45 -102.25 394.37 -102.22 378.9 -93.24C363.48 -84.29 354 -67.82 354 -50C354 -49.97 354 -49.94 354 -49.91C354 -49.88 354 -49.85 354 -49.83C354.06 -32.01 363.6 -15.56 379.05 -6.67C394.55 2.25 413.63 2.22 429.1 -6.76C430.96 -7.83 432.72 -9.02 434.4 -10.3ZM374 -49.97C374 -49.94 374 -49.92 374 -49.9C374.04 -39.21 379.76 -29.34 389.03 -24C398.33 -18.65 409.78 -18.67 419.06 -24.05C428.31 -29.42 434 -39.31 434 -50L434 -50.04C434 -50.06 434 -50.08 434 -50.1C433.96 -60.79 428.24 -70.66 418.97 -76C409.67 -81.35 398.22 -81.33 388.94 -75.95C379.69 -70.58 374 -60.69 374 -50L374 -49.97ZM472 -10C472 -4.48 476.48 0 482 0C487.52 0 492 -4.48 492 -10L492 -138C492 -143.52 487.52 -148 482 -148C476.48 -148 472 -143.52 472 -138ZM510 -10C510 -4.48 514.48 0 520 0C525.52 0 530 -4.48 530 -10L530 -138C530 -143.52 525.52 -148 520 -148C514.48 -148 510 -143.52 510 -138Z","s":"M571.4 -14.2C571.4 -22.04 565.04 -28.4 557.2 -28.4C549.36 -28.4 543 -22.04 543 -14.2C543 -6.36 549.36 -0 557.2 0C565.04 0 571.4 -6.36 571.4 -14.2Z","vb":[-5.848168616040539e-09,-148.0,571.4000244199107,148.00017547607422]},"mono":{"l":"M100 -50C100 -32.18 90.52 -15.71 75.1 -6.76C59.63 2.22 40.55 2.25 25.05 -6.67C9.6 -15.56 0.06 -32.01 0 -49.83C0 -49.85 0 -49.88 0 -49.91C0 -49.94 0 -49.97 0 -50C-0 -67.82 9.48 -84.29 24.9 -93.24C40.37 -102.22 59.45 -102.25 74.95 -93.33C90.4 -84.44 99.94 -67.99 100 -50.17C100 -50.14 100 -50.1 100 -50.06C100 -50.04 100 -50.02 100 -50ZM20 -49.9C20 -49.92 20 -49.94 20 -49.97L20 -50C20 -60.69 25.69 -70.58 34.94 -75.95C44.22 -81.33 55.67 -81.35 64.97 -76C74.24 -70.66 79.96 -60.79 80 -50.1C80 -50.08 80 -50.06 80 -50.04L80 -50C80 -39.31 74.31 -29.42 65.06 -24.05C55.78 -18.67 44.33 -18.65 35.03 -24C25.76 -29.34 20.04 -39.21 20 -49.9ZM195.77 -79.73C195.77 -82.69 194.47 -85.36 192.42 -87.19C172.4 -105.18 141.73 -104.1 123.03 -84.73C104.32 -65.36 104.32 -34.64 123.03 -15.27C141.73 4.1 172.4 5.18 192.42 -12.81C194.47 -14.64 195.77 -17.31 195.77 -20.27C195.77 -25.8 191.29 -30.27 185.77 -30.27C183.18 -30.27 180.82 -29.29 179.05 -27.68C167.04 -16.89 148.64 -17.54 137.42 -29.16C126.19 -40.79 126.19 -59.21 137.42 -70.84C148.64 -82.46 167.04 -83.11 179.05 -72.32C180.82 -70.71 183.18 -69.73 185.77 -69.73C191.29 -69.73 195.77 -74.2 195.77 -79.73Z","s":"M242.4 -14.2C242.4 -22.04 236.04 -28.4 228.2 -28.4C220.36 -28.4 214 -22.04 214 -14.2C214 -6.36 220.36 -0 228.2 0C236.04 0 242.4 -6.36 242.4 -14.2Z","vb":[-5.848168616040539e-09,-100.00016784667969,242.39999390233254,100.0003433227539]},"pillars":{"brand":{"l":"M100 -50C100 -32.18 90.52 -15.71 75.1 -6.76C59.63 2.22 40.55 2.25 25.05 -6.67C9.6 -15.56 0.06 -32.01 0 -49.83C0 -49.85 0 -49.88 0 -49.91C0 -49.94 0 -49.97 0 -50C-0 -67.82 9.48 -84.29 24.9 -93.24C40.37 -102.22 59.45 -102.25 74.95 -93.33C90.4 -84.44 99.94 -67.99 100 -50.17C100 -50.14 100 -50.1 100 -50.06C100 -50.04 100 -50.02 100 -50ZM20 -49.9C20 -49.92 20 -49.94 20 -49.97L20 -50C20 -60.69 25.69 -70.58 34.94 -75.95C44.22 -81.33 55.67 -81.35 64.97 -76C74.24 -70.66 79.96 -60.79 80 -50.1C80 -50.08 80 -50.06 80 -50.04L80 -50C80 -39.31 74.31 -29.42 65.06 -24.05C55.78 -18.67 44.33 -18.65 35.03 -24C25.76 -29.34 20.04 -39.21 20 -49.9ZM113 -10C113 -4.48 117.48 0 123 0C128.52 0 133 -4.48 133 -10L133 -53C133 -67.91 145.09 -80 160 -80C174.91 -80 187 -67.91 187 -53L187 -10C187 -4.48 191.48 0 197 0C202.52 0 207 -4.48 207 -10L207 -53C207 -78.96 185.96 -100 160 -100C149.91 -100 140.56 -96.82 132.9 -91.41C132.22 -96.26 128.05 -100 123 -100C117.48 -100 113 -95.52 113 -90ZM353 -50C353 -32.18 343.52 -15.71 328.1 -6.76C312.63 2.22 293.55 2.25 278.05 -6.67C276.14 -7.77 274.32 -8.98 272.6 -10.3L272.6 -10C272.6 -4.48 268.12 0 262.6 0C257.08 0 252.6 -4.48 252.6 -10L252.6 -138C252.6 -143.52 257.08 -148 262.6 -148C268.12 -148 272.6 -143.52 272.6 -138L272.6 -89.7C274.28 -90.98 276.04 -92.17 277.9 -93.24C293.37 -102.22 312.45 -102.25 327.95 -93.33C343.4 -84.44 352.94 -67.99 353 -50.17C353 -50.14 353 -50.1 353 -50.06ZM273 -49.97C273 -49.94 273 -49.92 273 -49.9C273.04 -39.21 278.76 -29.34 288.03 -24C297.33 -18.65 308.78 -18.67 318.06 -24.05C327.31 -29.42 333 -39.31 333 -50L333 -50.04C333 -50.06 333 -50.08 333 -50.1C332.96 -60.79 327.24 -70.66 317.97 -76C308.67 -81.35 297.22 -81.33 287.94 -75.95C278.69 -70.58 273 -60.69 273 -50L273 -49.97ZM366 -10L366 -90C366 -95.52 370.48 -100 376 -100C380.61 -100 384.49 -96.88 385.65 -92.65C386.2 -93.01 386.76 -93.37 387.34 -93.72C400.51 -101.63 416.85 -102.1 430.45 -94.96C433.72 -93.32 435.96 -89.93 435.96 -86.02C435.96 -80.5 431.48 -76.02 425.96 -76.02C424.21 -76.02 422.56 -76.47 421.12 -77.27C413.71 -81.14 404.81 -80.88 397.64 -76.57C390.42 -72.23 386 -64.42 386 -56L386 -10C386 -4.48 381.52 0 376 0C370.48 0 366 -4.48 366 -10ZM527.4 -10C527.4 -4.48 531.88 0 537.4 0C542.92 0 547.4 -4.48 547.4 -10L547.4 -90C547.4 -95.52 542.92 -100 537.4 -100C531.88 -100 527.4 -95.52 527.4 -90L527.4 -89.7C525.68 -91.02 523.86 -92.23 521.95 -93.33C506.45 -102.25 487.37 -102.22 471.9 -93.24C456.48 -84.29 447 -67.82 447 -50C447 -49.97 447 -49.94 447 -49.91C447 -49.88 447 -49.85 447 -49.83C447.06 -32.01 456.6 -15.56 472.05 -6.67C487.55 2.25 506.63 2.22 522.1 -6.76C523.96 -7.83 525.72 -9.02 527.4 -10.3ZM467 -49.97C467 -49.94 467 -49.92 467 -49.9C467.04 -39.21 472.76 -29.34 482.03 -24C491.33 -18.65 502.78 -18.67 512.06 -24.05C521.31 -29.42 527 -39.31 527 -50L527 -50.04C527 -50.06 527 -50.08 527 -50.1C526.96 -60.79 521.24 -70.66 511.97 -76C502.67 -81.35 491.22 -81.33 481.94 -75.95C472.69 -70.58 467 -60.69 467 -50L467 -49.97ZM565 -10C565 -4.48 569.48 0 575 0C580.52 0 585 -4.48 585 -10L585 -53C585 -67.91 597.09 -80 612 -80C626.91 -80 639 -67.91 639 -53L639 -10C639 -4.48 643.48 0 649 0C654.52 0 659 -4.48 659 -10L659 -53C659 -78.96 637.96 -100 612 -100C601.91 -100 592.56 -96.82 584.9 -91.41C584.22 -96.26 580.05 -100 575 -100C569.48 -100 565 -95.52 565 -90ZM752.4 -10C752.4 -4.48 756.88 0 762.4 0C767.92 0 772.4 -4.48 772.4 -10L772.4 -138C772.4 -143.52 767.92 -148 762.4 -148C756.88 -148 752.4 -143.52 752.4 -138L752.4 -89.7C750.68 -91.02 748.86 -92.23 746.95 -93.33C731.45 -102.25 712.37 -102.22 696.9 -93.24C681.48 -84.29 672 -67.82 672 -50C672 -49.97 672 -49.94 672 -49.91C672 -49.88 672 -49.85 672 -49.83C672.06 -32.01 681.6 -15.56 697.05 -6.67C712.55 2.25 731.63 2.22 747.1 -6.76C748.96 -7.83 750.72 -9.02 752.4 -10.3ZM692 -49.97C692 -49.94 692 -49.92 692 -49.9C692.04 -39.21 697.76 -29.34 707.03 -24C716.33 -18.65 727.78 -18.67 737.06 -24.05C746.31 -29.42 752 -39.31 752 -50L752 -50.04C752 -50.06 752 -50.08 752 -50.1C751.96 -60.79 746.24 -70.66 736.97 -76C727.67 -81.35 716.22 -81.33 706.94 -75.95C697.69 -70.58 692 -60.69 692 -50L692 -49.97Z","s":"M813.4 -14.2C813.4 -22.04 807.04 -28.4 799.2 -28.4C791.36 -28.4 785 -22.04 785 -14.2C785 -6.36 791.36 -0 799.2 0C807.04 0 813.4 -6.36 813.4 -14.2Z","vb":[-5.848168616040539e-09,-148.0,813.4000244199107,148.00000047683716]},"growth":{"l":"M100 -50C100 -32.18 90.52 -15.71 75.1 -6.76C59.63 2.22 40.55 2.25 25.05 -6.67C9.6 -15.56 0.06 -32.01 0 -49.83C0 -49.85 0 -49.88 0 -49.91C0 -49.94 0 -49.97 0 -50C-0 -67.82 9.48 -84.29 24.9 -93.24C40.37 -102.22 59.45 -102.25 74.95 -93.33C90.4 -84.44 99.94 -67.99 100 -50.17C100 -50.14 100 -50.1 100 -50.06C100 -50.04 100 -50.02 100 -50ZM20 -49.9C20 -49.92 20 -49.94 20 -49.97L20 -50C20 -60.69 25.69 -70.58 34.94 -75.95C44.22 -81.33 55.67 -81.35 64.97 -76C74.24 -70.66 79.96 -60.79 80 -50.1C80 -50.08 80 -50.06 80 -50.04L80 -50C80 -39.31 74.31 -29.42 65.06 -24.05C55.78 -18.67 44.33 -18.65 35.03 -24C25.76 -29.34 20.04 -39.21 20 -49.9ZM113 -10C113 -4.48 117.48 0 123 0C128.52 0 133 -4.48 133 -10L133 -53C133 -67.91 145.09 -80 160 -80C174.91 -80 187 -67.91 187 -53L187 -10C187 -4.48 191.48 0 197 0C202.52 0 207 -4.48 207 -10L207 -53C207 -78.96 185.96 -100 160 -100C149.91 -100 140.56 -96.82 132.9 -91.41C132.22 -96.26 128.05 -100 123 -100C117.48 -100 113 -95.52 113 -90ZM253 -50C253 -67.82 262.48 -84.29 277.9 -93.24C293.37 -102.22 312.45 -102.25 327.95 -93.33C329.86 -92.23 331.68 -91.02 333.4 -89.7L333.4 -90C333.4 -95.52 337.88 -100 343.4 -100C348.92 -100 353.4 -95.52 353.4 -90L353.4 0C353.4 1.09 353.23 2.14 352.9 3.12C351.53 25.23 335.69 43.97 313.82 48.81C291.01 53.87 267.75 42.46 257.78 21.34C257.12 20.01 256.75 18.5 256.75 16.9C256.75 11.38 261.22 6.9 266.75 6.9C270.83 6.9 274.34 9.35 275.89 12.85C281.88 25.49 295.82 32.32 309.49 29.29C323.23 26.24 333 14.07 333 0C333 -0.98 333.14 -1.92 333.4 -2.81L333.4 -10.3C331.72 -9.02 329.96 -7.83 328.1 -6.76C312.63 2.22 293.55 2.25 278.05 -6.67C262.6 -15.56 253.06 -32.01 253 -49.83C253 -49.85 253 -49.88 253 -49.91C253 -49.94 253 -49.97 253 -50ZM273 -49.9C273 -49.92 273 -49.94 273 -49.97L273 -50C273 -60.69 278.69 -70.58 287.94 -75.95C297.22 -81.33 308.67 -81.35 317.97 -76C327.24 -70.66 332.96 -60.79 333 -50.1C333 -50.08 333 -50.06 333 -50.04L333 -50C333 -39.31 327.31 -29.42 318.06 -24.05C308.78 -18.67 297.33 -18.65 288.03 -24C278.76 -29.34 273.04 -39.21 273 -49.9ZM371 -10L371 -90C371 -95.52 375.48 -100 381 -100C385.61 -100 389.49 -96.88 390.65 -92.65C391.2 -93.01 391.76 -93.37 392.34 -93.72C405.51 -101.63 421.85 -102.1 435.45 -94.96C438.72 -93.32 440.96 -89.93 440.96 -86.02C440.96 -80.5 436.48 -76.02 430.96 -76.02C429.21 -76.02 427.56 -76.47 426.12 -77.27C418.71 -81.14 409.81 -80.88 402.64 -76.57C395.42 -72.23 391 -64.42 391 -56L391 -10C391 -4.48 386.52 0 381 0C375.48 0 371 -4.48 371 -10ZM552 -50C552 -32.18 542.52 -15.71 527.1 -6.76C511.63 2.22 492.55 2.25 477.05 -6.67C461.6 -15.56 452.06 -32.01 452 -49.83C452 -49.85 452 -49.88 452 -49.91C452 -49.94 452 -49.97 452 -50C452 -67.82 461.48 -84.29 476.9 -93.24C492.37 -102.22 511.45 -102.25 526.95 -93.33C542.4 -84.44 551.94 -67.99 552 -50.17C552 -50.14 552 -50.1 552 -50.06C552 -50.04 552 -50.02 552 -50ZM472 -49.9C472 -49.92 472 -49.94 472 -49.97L472 -50C472 -60.69 477.69 -70.58 486.94 -75.95C496.22 -81.33 507.67 -81.35 516.97 -76C526.24 -70.66 531.96 -60.79 532 -50.1C532 -50.08 532 -50.06 532 -50.04L532 -50C532 -39.31 526.31 -29.42 517.06 -24.05C507.78 -18.67 496.33 -18.65 487.03 -24C477.76 -29.34 472.04 -39.21 472 -49.9ZM685 -90C685 -88.84 684.8 -87.72 684.44 -86.69L658.58 -7.13C657.35 -3 653.52 0 649 0C644.48 0 640.65 -3 639.42 -7.13L623 -57.65L606.58 -7.13C605.35 -3 601.52 0 597 0C592.48 0 588.65 -3 587.42 -7.13L561.56 -86.69C561.2 -87.72 561 -88.84 561 -90C561 -95.52 565.48 -100 571 -100C575.52 -100 579.35 -97 580.58 -92.87L597 -42.35L613.42 -92.87C614.65 -97 618.48 -100 623 -100C627.52 -100 631.35 -97 632.58 -92.87L649 -42.35L665.42 -92.87C666.65 -97 670.48 -100 675 -100C680.52 -100 685 -95.52 685 -90ZM709 -10C709 -4.48 713.48 0 719 0C724.52 0 729 -4.48 729 -10L729 -78L735 -78C740.52 -78 745 -82.48 745 -88C745 -93.52 740.52 -98 735 -98L729 -98L729 -122C729 -127.52 724.52 -132 719 -132C713.48 -132 709 -127.52 709 -122L709 -98L703 -98C697.48 -98 693 -93.52 693 -88C693 -82.48 697.48 -78 703 -78L709 -78ZM757 -10C757 -4.48 761.48 0 767 0C772.52 0 777 -4.48 777 -10L777 -53C777 -67.91 789.09 -80 804 -80C818.91 -80 831 -67.91 831 -53L831 -10C831 -4.48 835.48 0 841 0C846.52 0 851 -4.48 851 -10L851 -53C851 -78.96 829.96 -100 804 -100C793.95 -100 784.64 -96.85 777 -91.48L777 -138C777 -143.52 772.52 -148 767 -148C761.48 -148 757 -143.52 757 -138Z","s":"M892.4 -14.2C892.4 -22.04 886.04 -28.4 878.2 -28.4C870.36 -28.4 864 -22.04 864 -14.2C864 -6.36 870.36 -0 878.2 0C886.04 0 892.4 -6.36 892.4 -14.2Z","vb":[-5.848168616040539e-09,-148.0,892.4000244199107,198.00496292114258]},"digital":{"l":"M100 -50C100 -32.18 90.52 -15.71 75.1 -6.76C59.63 2.22 40.55 2.25 25.05 -6.67C9.6 -15.56 0.06 -32.01 0 -49.83C0 -49.85 0 -49.88 0 -49.91C0 -49.94 0 -49.97 0 -50C-0 -67.82 9.48 -84.29 24.9 -93.24C40.37 -102.22 59.45 -102.25 74.95 -93.33C90.4 -84.44 99.94 -67.99 100 -50.17C100 -50.14 100 -50.1 100 -50.06C100 -50.04 100 -50.02 100 -50ZM20 -49.9C20 -49.92 20 -49.94 20 -49.97L20 -50C20 -60.69 25.69 -70.58 34.94 -75.95C44.22 -81.33 55.67 -81.35 64.97 -76C74.24 -70.66 79.96 -60.79 80 -50.1C80 -50.08 80 -50.06 80 -50.04L80 -50C80 -39.31 74.31 -29.42 65.06 -24.05C55.78 -18.67 44.33 -18.65 35.03 -24C25.76 -29.34 20.04 -39.21 20 -49.9ZM113 -10C113 -4.48 117.48 0 123 0C128.52 0 133 -4.48 133 -10L133 -53C133 -67.91 145.09 -80 160 -80C174.91 -80 187 -67.91 187 -53L187 -10C187 -4.48 191.48 0 197 0C202.52 0 207 -4.48 207 -10L207 -53C207 -78.96 185.96 -100 160 -100C149.91 -100 140.56 -96.82 132.9 -91.41C132.22 -96.26 128.05 -100 123 -100C117.48 -100 113 -95.52 113 -90ZM333.4 -10C333.4 -4.48 337.88 0 343.4 0C348.92 0 353.4 -4.48 353.4 -10L353.4 -138C353.4 -143.52 348.92 -148 343.4 -148C337.88 -148 333.4 -143.52 333.4 -138L333.4 -89.7C331.68 -91.02 329.86 -92.23 327.95 -93.33C312.45 -102.25 293.37 -102.22 277.9 -93.24C262.48 -84.29 253 -67.82 253 -50C253 -49.97 253 -49.94 253 -49.91C253 -49.88 253 -49.85 253 -49.83C253.06 -32.01 262.6 -15.56 278.05 -6.67C293.55 2.25 312.63 2.22 328.1 -6.76C329.96 -7.83 331.72 -9.02 333.4 -10.3ZM273 -49.97C273 -49.94 273 -49.92 273 -49.9C273.04 -39.21 278.76 -29.34 288.03 -24C297.33 -18.65 308.78 -18.67 318.06 -24.05C327.31 -29.42 333 -39.31 333 -50L333 -50.04C333 -50.06 333 -50.08 333 -50.1C332.96 -60.79 327.24 -70.66 317.97 -76C308.67 -81.35 297.22 -81.33 287.94 -75.95C278.69 -70.58 273 -60.69 273 -50L273 -49.97ZM371 -10L371 -90C371 -95.52 375.48 -100 381 -100C386.52 -100 391 -95.52 391 -90L391 -10C391 -4.48 386.52 0 381 0C375.48 0 371 -4.48 371 -10ZM394.6 -130C394.6 -137.51 388.51 -143.6 381 -143.6C373.49 -143.6 367.4 -137.51 367.4 -130C367.4 -122.49 373.49 -116.4 381 -116.4C388.51 -116.4 394.6 -122.49 394.6 -130ZM404 -50C404 -67.82 413.48 -84.29 428.9 -93.24C444.37 -102.22 463.45 -102.25 478.95 -93.33C480.86 -92.23 482.68 -91.02 484.4 -89.7L484.4 -90C484.4 -95.52 488.88 -100 494.4 -100C499.92 -100 504.4 -95.52 504.4 -90L504.4 0C504.4 1.09 504.23 2.14 503.9 3.12C502.53 25.23 486.69 43.97 464.82 48.81C442.01 53.87 418.75 42.46 408.78 21.34C408.12 20.01 407.75 18.5 407.75 16.9C407.75 11.38 412.22 6.9 417.75 6.9C421.83 6.9 425.34 9.35 426.89 12.85C432.88 25.49 446.82 32.32 460.49 29.29C474.23 26.24 484 14.07 484 0C484 -0.98 484.14 -1.92 484.4 -2.81L484.4 -10.3C482.72 -9.02 480.96 -7.83 479.1 -6.76C463.63 2.22 444.55 2.25 429.05 -6.67C413.6 -15.56 404.06 -32.01 404 -49.83C404 -49.85 404 -49.88 404 -49.91C404 -49.94 404 -49.97 404 -50ZM424 -49.9C424 -49.92 424 -49.94 424 -49.97L424 -50C424 -60.69 429.69 -70.58 438.94 -75.95C448.22 -81.33 459.67 -81.35 468.97 -76C478.24 -70.66 483.96 -60.79 484 -50.1C484 -50.08 484 -50.06 484 -50.04L484 -50C484 -39.31 478.31 -29.42 469.06 -24.05C459.78 -18.67 448.33 -18.65 439.03 -24C429.76 -29.34 424.04 -39.21 424 -49.9ZM522 -10L522 -90C522 -95.52 526.48 -100 532 -100C537.52 -100 542 -95.52 542 -90L542 -10C542 -4.48 537.52 0 532 0C526.48 0 522 -4.48 522 -10ZM545.6 -130C545.6 -137.51 539.51 -143.6 532 -143.6C524.49 -143.6 518.4 -137.51 518.4 -130C518.4 -122.49 524.49 -116.4 532 -116.4C539.51 -116.4 545.6 -122.49 545.6 -130ZM570 -10C570 -4.48 574.48 0 580 0C585.52 0 590 -4.48 590 -10L590 -78L596 -78C601.52 -78 606 -82.48 606 -88C606 -93.52 601.52 -98 596 -98L590 -98L590 -122C590 -127.52 585.52 -132 580 -132C574.48 -132 570 -127.52 570 -122L570 -98L564 -98C558.48 -98 554 -93.52 554 -88C554 -82.48 558.48 -78 564 -78L570 -78ZM695.4 -10C695.4 -4.48 699.88 0 705.4 0C710.92 0 715.4 -4.48 715.4 -10L715.4 -90C715.4 -95.52 710.92 -100 705.4 -100C699.88 -100 695.4 -95.52 695.4 -90L695.4 -89.7C693.68 -91.02 691.86 -92.23 689.95 -93.33C674.45 -102.25 655.37 -102.22 639.9 -93.24C624.48 -84.29 615 -67.82 615 -50C615 -49.97 615 -49.94 615 -49.91C615 -49.88 615 -49.85 615 -49.83C615.06 -32.01 624.6 -15.56 640.05 -6.67C655.55 2.25 674.63 2.22 690.1 -6.76C691.96 -7.83 693.72 -9.02 695.4 -10.3ZM635 -49.97C635 -49.94 635 -49.92 635 -49.9C635.04 -39.21 640.76 -29.34 650.03 -24C659.33 -18.65 670.78 -18.67 680.06 -24.05C689.31 -29.42 695 -39.31 695 -50L695 -50.04C695 -50.06 695 -50.08 695 -50.1C694.96 -60.79 689.24 -70.66 679.97 -76C670.67 -81.35 659.22 -81.33 649.94 -75.95C640.69 -70.58 635 -60.69 635 -50L635 -49.97ZM733 -10C733 -4.48 737.48 0 743 0C748.52 0 753 -4.48 753 -10L753 -138C753 -143.52 748.52 -148 743 -148C737.48 -148 733 -143.52 733 -138Z","s":"M794.4 -14.2C794.4 -22.04 788.04 -28.4 780.2 -28.4C772.36 -28.4 766 -22.04 766 -14.2C766 -6.36 772.36 -0 780.2 0C788.04 0 794.4 -6.36 794.4 -14.2Z","vb":[-5.848168616040539e-09,-148.0,794.4000244199107,198.00496292114258]},"business":{"l":"M100 -50C100 -32.18 90.52 -15.71 75.1 -6.76C59.63 2.22 40.55 2.25 25.05 -6.67C9.6 -15.56 0.06 -32.01 0 -49.83C0 -49.85 0 -49.88 0 -49.91C0 -49.94 0 -49.97 0 -50C-0 -67.82 9.48 -84.29 24.9 -93.24C40.37 -102.22 59.45 -102.25 74.95 -93.33C90.4 -84.44 99.94 -67.99 100 -50.17C100 -50.14 100 -50.1 100 -50.06C100 -50.04 100 -50.02 100 -50ZM20 -49.9C20 -49.92 20 -49.94 20 -49.97L20 -50C20 -60.69 25.69 -70.58 34.94 -75.95C44.22 -81.33 55.67 -81.35 64.97 -76C74.24 -70.66 79.96 -60.79 80 -50.1C80 -50.08 80 -50.06 80 -50.04L80 -50C80 -39.31 74.31 -29.42 65.06 -24.05C55.78 -18.67 44.33 -18.65 35.03 -24C25.76 -29.34 20.04 -39.21 20 -49.9ZM113 -10C113 -4.48 117.48 0 123 0C128.52 0 133 -4.48 133 -10L133 -53C133 -67.91 145.09 -80 160 -80C174.91 -80 187 -67.91 187 -53L187 -10C187 -4.48 191.48 0 197 0C202.52 0 207 -4.48 207 -10L207 -53C207 -78.96 185.96 -100 160 -100C149.91 -100 140.56 -96.82 132.9 -91.41C132.22 -96.26 128.05 -100 123 -100C117.48 -100 113 -95.52 113 -90ZM353 -50C353 -32.18 343.52 -15.71 328.1 -6.76C312.63 2.22 293.55 2.25 278.05 -6.67C276.14 -7.77 274.32 -8.98 272.6 -10.3L272.6 -10C272.6 -4.48 268.12 0 262.6 0C257.08 0 252.6 -4.48 252.6 -10L252.6 -138C252.6 -143.52 257.08 -148 262.6 -148C268.12 -148 272.6 -143.52 272.6 -138L272.6 -89.7C274.28 -90.98 276.04 -92.17 277.9 -93.24C293.37 -102.22 312.45 -102.25 327.95 -93.33C343.4 -84.44 352.94 -67.99 353 -50.17C353 -50.14 353 -50.1 353 -50.06ZM273 -49.97C273 -49.94 273 -49.92 273 -49.9C273.04 -39.21 278.76 -29.34 288.03 -24C297.33 -18.65 308.78 -18.67 318.06 -24.05C327.31 -29.42 333 -39.31 333 -50L333 -50.04C333 -50.06 333 -50.08 333 -50.1C332.96 -60.79 327.24 -70.66 317.97 -76C308.67 -81.35 297.22 -81.33 287.94 -75.95C278.69 -70.58 273 -60.69 273 -50L273 -49.97ZM460 -10L460 -90C460 -95.52 455.52 -100 450 -100C444.48 -100 440 -95.52 440 -90L440 -47C440 -32.09 427.91 -20 413 -20C398.09 -20 386 -32.09 386 -47L386 -90C386 -95.52 381.52 -100 376 -100C370.48 -100 366 -95.52 366 -90L366 -47C366 -21.04 387.04 0 413 0C423.09 0 432.44 -3.18 440.1 -8.59C440.78 -3.74 444.95 0 450 0C455.52 0 460 -4.48 460 -10ZM531.32 -80C531.32 -74.48 526.84 -70 521.32 -70C517.57 -70 514.3 -72.06 512.59 -75.12C510.14 -79.24 505.1 -81.04 500.58 -79.4C496.02 -77.74 493.31 -73.04 494.15 -68.26C494.99 -63.48 499.15 -60 504 -60C518.56 -60 531.02 -49.55 533.54 -35.21C536.07 -20.87 527.94 -6.79 514.26 -1.81C500.65 3.15 485.45 -2.34 478.12 -14.82C477.21 -16.33 476.68 -18.1 476.68 -20C476.68 -25.52 481.16 -30 486.68 -30C490.43 -30 493.7 -27.94 495.41 -24.88C497.86 -20.76 502.9 -18.96 507.42 -20.6C511.98 -22.26 514.69 -26.96 513.85 -31.74C513.01 -36.52 508.85 -40 504 -40C489.44 -40 476.98 -50.45 474.46 -64.79C471.93 -79.13 480.06 -93.21 493.74 -98.19C507.35 -103.15 522.55 -97.66 529.88 -85.18C530.79 -83.67 531.32 -81.9 531.32 -80ZM548 -10L548 -90C548 -95.52 552.48 -100 558 -100C563.52 -100 568 -95.52 568 -90L568 -10C568 -4.48 563.52 0 558 0C552.48 0 548 -4.48 548 -10ZM571.6 -130C571.6 -137.51 565.51 -143.6 558 -143.6C550.49 -143.6 544.4 -137.51 544.4 -130C544.4 -122.49 550.49 -116.4 558 -116.4C565.51 -116.4 571.6 -122.49 571.6 -130ZM586 -10C586 -4.48 590.48 0 596 0C601.52 0 606 -4.48 606 -10L606 -53C606 -67.91 618.09 -80 633 -80C647.91 -80 660 -67.91 660 -53L660 -10C660 -4.48 664.48 0 670 0C675.52 0 680 -4.48 680 -10L680 -53C680 -78.96 658.96 -100 633 -100C622.91 -100 613.56 -96.82 605.9 -91.41C605.22 -96.26 601.05 -100 596 -100C590.48 -100 586 -95.52 586 -90ZM793 -50C793 -44.48 788.52 -40 783 -40L714.72 -40C716.81 -34.06 720.78 -28.76 726.33 -25.06C738.23 -17.11 754.09 -18.67 764.21 -28.78C764.21 -28.79 764.21 -28.79 764.21 -28.79C766.02 -30.6 768.52 -31.72 771.28 -31.72C776.81 -31.72 781.28 -27.24 781.28 -21.72C781.28 -18.95 780.16 -16.45 778.36 -14.64C778.35 -14.64 778.35 -14.64 778.35 -14.64C761.48 2.22 735.05 4.82 715.22 -8.43C695.39 -21.68 687.68 -47.1 696.81 -69.13C705.93 -91.17 729.36 -103.69 752.75 -99.04C776.15 -94.39 793 -73.85 793 -50ZM714.72 -60C714.89 -60.5 715.08 -60.99 715.28 -61.48C720.76 -74.7 734.82 -82.22 748.85 -79.42C759.47 -77.31 767.84 -69.75 771.29 -60L714.72 -60ZM860.32 -80C860.32 -74.48 855.84 -70 850.32 -70C846.57 -70 843.3 -72.06 841.59 -75.12C839.14 -79.24 834.1 -81.04 829.58 -79.4C825.02 -77.74 822.31 -73.04 823.15 -68.26C823.99 -63.48 828.15 -60 833 -60C847.56 -60 860.02 -49.55 862.54 -35.21C865.07 -20.87 856.94 -6.79 843.26 -1.81C829.65 3.15 814.45 -2.34 807.12 -14.82C806.21 -16.33 805.68 -18.1 805.68 -20C805.68 -25.52 810.16 -30 815.68 -30C819.43 -30 822.7 -27.94 824.41 -24.88C826.86 -20.76 831.9 -18.96 836.42 -20.6C840.98 -22.26 843.69 -26.96 842.85 -31.74C842.01 -36.52 837.85 -40 833 -40C818.44 -40 805.98 -50.45 803.46 -64.79C800.93 -79.13 809.06 -93.21 822.74 -98.19C836.35 -103.15 851.55 -97.66 858.88 -85.18C859.79 -83.67 860.32 -81.9 860.32 -80ZM931.32 -80C931.32 -74.48 926.84 -70 921.32 -70C917.57 -70 914.3 -72.06 912.59 -75.12C910.14 -79.24 905.1 -81.04 900.58 -79.4C896.02 -77.74 893.31 -73.04 894.15 -68.26C894.99 -63.48 899.15 -60 904 -60C918.56 -60 931.02 -49.55 933.54 -35.21C936.07 -20.87 927.94 -6.79 914.26 -1.81C900.65 3.15 885.45 -2.34 878.12 -14.82C877.21 -16.33 876.68 -18.1 876.68 -20C876.68 -25.52 881.16 -30 886.68 -30C890.43 -30 893.7 -27.94 895.41 -24.88C897.86 -20.76 902.9 -18.96 907.42 -20.6C911.98 -22.26 914.69 -26.96 913.85 -31.74C913.01 -36.52 908.85 -40 904 -40C889.44 -40 876.98 -50.45 874.46 -64.79C871.93 -79.13 880.06 -93.21 893.74 -98.19C907.35 -103.15 922.55 -97.66 929.88 -85.18C930.79 -83.67 931.32 -81.9 931.32 -80Z","s":"M976.4 -14.2C976.4 -22.04 970.04 -28.4 962.2 -28.4C954.36 -28.4 948 -22.04 948 -14.2C948 -6.36 954.36 -0 962.2 0C970.04 0 976.4 -6.36 976.4 -14.2Z","vb":[-5.848168616040539e-09,-148.0,976.4000244199107,148.0038595199585]},"connect":{"l":"M100 -50C100 -32.18 90.52 -15.71 75.1 -6.76C59.63 2.22 40.55 2.25 25.05 -6.67C9.6 -15.56 0.06 -32.01 0 -49.83C0 -49.85 0 -49.88 0 -49.91C0 -49.94 0 -49.97 0 -50C-0 -67.82 9.48 -84.29 24.9 -93.24C40.37 -102.22 59.45 -102.25 74.95 -93.33C90.4 -84.44 99.94 -67.99 100 -50.17C100 -50.14 100 -50.1 100 -50.06C100 -50.04 100 -50.02 100 -50ZM20 -49.9C20 -49.92 20 -49.94 20 -49.97L20 -50C20 -60.69 25.69 -70.58 34.94 -75.95C44.22 -81.33 55.67 -81.35 64.97 -76C74.24 -70.66 79.96 -60.79 80 -50.1C80 -50.08 80 -50.06 80 -50.04L80 -50C80 -39.31 74.31 -29.42 65.06 -24.05C55.78 -18.67 44.33 -18.65 35.03 -24C25.76 -29.34 20.04 -39.21 20 -49.9ZM113 -10C113 -4.48 117.48 0 123 0C128.52 0 133 -4.48 133 -10L133 -53C133 -67.91 145.09 -80 160 -80C174.91 -80 187 -67.91 187 -53L187 -10C187 -4.48 191.48 0 197 0C202.52 0 207 -4.48 207 -10L207 -53C207 -78.96 185.96 -100 160 -100C149.91 -100 140.56 -96.82 132.9 -91.41C132.22 -96.26 128.05 -100 123 -100C117.48 -100 113 -95.52 113 -90ZM339.77 -79.73C339.77 -82.69 338.47 -85.36 336.42 -87.19C316.4 -105.18 285.73 -104.1 267.03 -84.73C248.32 -65.36 248.32 -34.64 267.03 -15.27C285.73 4.1 316.4 5.18 336.42 -12.81C338.47 -14.64 339.77 -17.31 339.77 -20.27C339.77 -25.8 335.29 -30.27 329.77 -30.27C327.18 -30.27 324.82 -29.29 323.05 -27.68C311.04 -16.89 292.64 -17.54 281.42 -29.16C270.19 -40.79 270.19 -59.21 281.42 -70.84C292.64 -82.46 311.04 -83.11 323.05 -72.32C324.82 -70.71 327.18 -69.73 329.77 -69.73C335.29 -69.73 339.77 -74.2 339.77 -79.73ZM454 -50C454 -32.18 444.52 -15.71 429.1 -6.76C413.63 2.22 394.55 2.25 379.05 -6.67C363.6 -15.56 354.06 -32.01 354 -49.83C354 -49.85 354 -49.88 354 -49.91C354 -49.94 354 -49.97 354 -50C354 -67.82 363.48 -84.29 378.9 -93.24C394.37 -102.22 413.45 -102.25 428.95 -93.33C444.4 -84.44 453.94 -67.99 454 -50.17C454 -50.14 454 -50.1 454 -50.06C454 -50.04 454 -50.02 454 -50ZM374 -49.9C374 -49.92 374 -49.94 374 -49.97L374 -50C374 -60.69 379.69 -70.58 388.94 -75.95C398.22 -81.33 409.67 -81.35 418.97 -76C428.24 -70.66 433.96 -60.79 434 -50.1C434 -50.08 434 -50.06 434 -50.04L434 -50C434 -39.31 428.31 -29.42 419.06 -24.05C409.78 -18.67 398.33 -18.65 389.03 -24C379.76 -29.34 374.04 -39.21 374 -49.9ZM467 -10C467 -4.48 471.48 0 477 0C482.52 0 487 -4.48 487 -10L487 -53C487 -67.91 499.09 -80 514 -80C528.91 -80 541 -67.91 541 -53L541 -10C541 -4.48 545.48 0 551 0C556.52 0 561 -4.48 561 -10L561 -53C561 -78.96 539.96 -100 514 -100C503.91 -100 494.56 -96.82 486.9 -91.41C486.22 -96.26 482.05 -100 477 -100C471.48 -100 467 -95.52 467 -90ZM579 -10C579 -4.48 583.48 0 589 0C594.52 0 599 -4.48 599 -10L599 -53C599 -67.91 611.09 -80 626 -80C640.91 -80 653 -67.91 653 -53L653 -10C653 -4.48 657.48 0 663 0C668.52 0 673 -4.48 673 -10L673 -53C673 -78.96 651.96 -100 626 -100C615.91 -100 606.56 -96.82 598.9 -91.41C598.22 -96.26 594.05 -100 589 -100C583.48 -100 579 -95.52 579 -90ZM786 -50C786 -44.48 781.52 -40 776 -40L707.72 -40C709.81 -34.06 713.78 -28.76 719.33 -25.06C731.23 -17.11 747.09 -18.67 757.21 -28.78C757.21 -28.79 757.21 -28.79 757.21 -28.79C759.02 -30.6 761.52 -31.72 764.28 -31.72C769.81 -31.72 774.28 -27.24 774.28 -21.72C774.28 -18.95 773.16 -16.45 771.36 -14.64C771.35 -14.64 771.35 -14.64 771.35 -14.64C754.48 2.22 728.05 4.82 708.22 -8.43C688.39 -21.68 680.68 -47.1 689.81 -69.13C698.93 -91.17 722.36 -103.69 745.75 -99.04C769.15 -94.39 786 -73.85 786 -50ZM707.72 -60C707.89 -60.5 708.08 -60.99 708.28 -61.48C713.76 -74.7 727.82 -82.22 741.85 -79.42C752.47 -77.31 760.84 -69.75 764.29 -60L707.72 -60ZM881.77 -79.73C881.77 -82.69 880.47 -85.36 878.42 -87.19C858.4 -105.18 827.73 -104.1 809.03 -84.73C790.32 -65.36 790.32 -34.64 809.03 -15.27C827.73 4.1 858.4 5.18 878.42 -12.81C880.47 -14.64 881.77 -17.31 881.77 -20.27C881.77 -25.8 877.29 -30.27 871.77 -30.27C869.18 -30.27 866.82 -29.29 865.05 -27.68C853.04 -16.89 834.64 -17.54 823.42 -29.16C812.19 -40.79 812.19 -59.21 823.42 -70.84C834.64 -82.46 853.04 -83.11 865.05 -72.32C866.82 -70.71 869.18 -69.73 871.77 -69.73C877.29 -69.73 881.77 -74.2 881.77 -79.73ZM911 -10C911 -4.48 915.48 0 921 0C926.52 0 931 -4.48 931 -10L931 -78L937 -78C942.52 -78 947 -82.48 947 -88C947 -93.52 942.52 -98 937 -98L931 -98L931 -122C931 -127.52 926.52 -132 921 -132C915.48 -132 911 -127.52 911 -122L911 -98L905 -98C899.48 -98 895 -93.52 895 -88C895 -82.48 899.48 -78 905 -78L911 -78Z","s":"M988.4 -14.2C988.4 -22.04 982.04 -28.4 974.2 -28.4C966.36 -28.4 960 -22.04 960 -14.2C960 -6.36 966.36 -0 974.2 0C982.04 0 988.4 -6.36 988.4 -14.2Z","vb":[-5.848168616040539e-09,-132.0,988.4000244199107,132.00084018707275]}}};
+const ANG={brand:90,growth:18,digital:-54,business:-126,connect:162};
+const sym=(a=-45,h=40,cls='')=>{const g=34.5,R=80,r=Math.PI/180,s=(-a+g)*r,e=(-a-g+360)*r,t=-a*r;
+  const d=`M${(R*Math.cos(s)).toFixed(2)} ${(R*Math.sin(s)).toFixed(2)}A${R} ${R} 0 1 1 ${(R*Math.cos(e)).toFixed(2)} ${(R*Math.sin(e)).toFixed(2)}`;
+  const sz=h?`width="${h}" height="${h}"`:'';
+  return `<svg class="${cls}" viewBox="-96 -96 192 192" ${sz} aria-hidden="true"><path class="ring" d="${d}"/><circle class="dot" cx="${(R*Math.cos(t)).toFixed(2)}" cy="${(R*Math.sin(t)).toFixed(2)}" r="22"/></svg>`};
+const word=(g,h)=>{const vb=g.vb;return `<svg viewBox="${vb.join(' ')}" height="${h}" width="${(h*vb[2]/vb[3]).toFixed(1)}" aria-hidden="true"><path class="lg-ink" fill-rule="evenodd" d="${g.l}"/><path class="lg-stop" fill-rule="evenodd" d="${g.s}"/></svg>`};
+const pillar=(k,h)=>{const g=LOGO.pillars[k],vb=g.vb,wh=h*.72;return `<span style="display:inline-flex;align-items:center;gap:${(h*.28).toFixed(0)}px" role="img" aria-label="on ${k}.">${sym(ANG[k],h)}<svg viewBox="${vb.join(' ')}" height="${(wh*vb[3]/148).toFixed(1)}" width="${(wh*vb[2]/148).toFixed(1)}" aria-hidden="true"><path class="lg-ink" fill-rule="evenodd" d="${g.l}"/><path class="lg-stop" fill-rule="evenodd" d="${g.s}"/></svg></span>`};
+for(const el of document.querySelectorAll('[data-logo]')){const k=el.dataset.logo,h=+el.dataset.h;
+  if(k==='wordmark'){el.innerHTML=word(LOGO.wordmark,h);el.setAttribute('role','img');el.setAttribute('aria-label','on call.')}
+  else if(k==='mono'){el.innerHTML=word(LOGO.mono,h);el.setAttribute('role','img');el.setAttribute('aria-label','on call. monogram')}
+  else if(k==='symbol'){el.innerHTML=sym(-45,h,el.dataset.class||'');el.style.display='contents'}
+  else if(k.startsWith('pillar-')){el.innerHTML=pillar(k.slice(7),h)}}
+
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const $=id=>document.getElementById(id);
+
+const facts=[['Clinic','V33 Physiotherapy Clinic, Nasr City. Operating for about 1–3 years.'],['Clinical focus','Spine and post-operative rehabilitation, as reported.'],['Current presence','Website and/or social media accounts. Marketing currently run by the owner.'],['Challenges','Weak social media performance, the need for a recognizable professional brand, and reaching more suitable patients.'],['6–12 month ambitions','Greater recognition, better business performance, and a potential second branch.'],['Immediate preference','Start promptly with ongoing management, with both partners part of decisions.']];
+$('facts').innerHTML=facts.map(f=>`<div class="card rv"><span class="lbl">${f[0]}</span><p style="color:var(--ink)">${f[1]}</p></div>`).join('');
+
+const pr=[['P1','Awareness','Increase clarity and familiarity with V33’s brand.','Consistent positioning, educational creative direction and channel hygiene.','Month 1 focus'],['P2','Credibility','Communicate professional expertise responsibly.','Clinician-reviewed content, verified credentials and transparent clinic information.','Month 1 focus'],['P3','Consideration','Make services easier to understand and the clinic easier to contact.','Website and profile clarity, local information and an administrative inquiry flow.','Basics from day one'],['P4','Business contribution','Connect marketing insights with commercial decisions over time.','Track relevant leading indicators, plus aggregate downstream signals when available.','Months 4–12'],['P5','Expansion','Inform future branch decisions.','A later-stage financial, operations, staffing and location-readiness assessment.','Later stage']];
+$('ladder').innerHTML=pr.map((p,i)=>`<div class="rv" style="margin-inline-start:${i*3}%"><button class="rung" aria-expanded="${i===0}" aria-controls="pd${i}" id="pb${i}"><span class="p">${p[0]}</span><span><span class="t">${p[1]}</span><br><span style="font-size:15px;opacity:.85">${p[2]}</span></span><span class="w">${p[4]}</span></button><div class="rdetail" id="pd${i}" ${i===0?'':'hidden'}><b>How we approach it:</b> ${p[3]}</div></div>`).join('');
+$('ladder').addEventListener('click',e=>{const b=e.target.closest('.rung');if(!b)return;const open=b.getAttribute('aria-expanded')==='true';
+  for(const x of document.querySelectorAll('.rung')){x.setAttribute('aria-expanded','false');$(x.getAttribute('aria-controls')).hidden=true}
+  if(!open){b.setAttribute('aria-expanded','true');$(b.getAttribute('aria-controls')).hidden=false}});
+
+const fun=[['Awareness',45,['Educational reels','Clinician-led explanations','Consistent visual branding','Local digital presence'],'On Call leads','V33 reviews clinical content'],['Consideration',30,['Clear specialty information','Verified credentials','FAQs and what to expect','Accessible clinic information'],'On Call leads','V33 approves facts'],['Inquiry',20,['Accurate contact buttons and hours','Website pathways','Approved administrative WhatsApp replies'],'Shared','On Call drafts, V33 runs replies'],['Appointment',5,['V33-owned booking','V33’s clinical screening process'],'V33 owns','On Call maps friction only'],['Patient experience',0,['V33’s clinical team','Service processes and appropriate follow-up','Care quality'],'V33 owns','Outside marketing’s remit']];
+const ft=$('funnelTabs'),fp=$('funnelPanel');
+ft.innerHTML=fun.map((f,i)=>`<button class="fstep" role="tab" id="ft${i}" aria-selected="${i===0}" aria-controls="funnelPanel"><span class="n">Stage ${i+1}</span><span class="s">${f[0]}</span><span class="bar" aria-label="${f[1]}% of first-month effort, our estimate"><i style="width:${f[1]}%"></i></span></button>`).join('');
+const showF=i=>{const f=fun[i];[...ft.children].forEach((b,j)=>b.setAttribute('aria-selected',j===i));
+  fp.innerHTML=`<div class="card"><span class="lbl">Stage ${i+1} · ${f[0]}</span><h3 style="font-size:28px">${f[0]}: what happens here.</h3><ul class="dots">${f[2].map(x=>`<li>${x}</li>`).join('')}</ul></div><div class="card inv"><span class="lbl">Who owns it</span><h3 style="font-size:28px">${f[3]}.</h3><p>${f[4]}.</p><span class="lbl" style="margin-top:8px">Share of first-month effort</span><p style="font-family:Quicksand;font-weight:700;font-size:44px;color:#f2f4ef;line-height:1">${f[1]?'~'+f[1]+'%':'None'}</p><p class="note" style="color:#b4d2c2">Our planning estimate, not a contract figure.</p></div>`};
+ft.addEventListener('click',e=>{const b=e.target.closest('.fstep');if(b)showF([...ft.children].indexOf(b))});
+showF(0);
+
+const acts=[['Audit visual identity','Across Instagram, Facebook, the website and clinic information.'],['Refresh profile basics','Biography, service descriptions and contact details.'],['Mini digital brand direction','Visual references, type hierarchy, post layouts, photography treatment and voice.'],['Message hierarchy','What V33 does, who it serves, and how to learn more.'],['Arabic-first voice','Professional and accessible, with English used where relevant.'],['Quick-fix list','An approval-ready list of low-effort profile corrections.']];
+$('brandActs').innerHTML=acts.map((a,i)=>`<div class="card rv"><span class="num">${String(i+1).padStart(2,'0')}</span><h3>${a[0]}</h3><p>${a[1]}</p></div>`).join('');
+
+const ch=[['Instagram','Short-form educational awareness and recognizable visual storytelling.','Reels, carousels, stories and highlights','Saves, shares, non-follower reach'],['Facebook','Educational distribution, plus clear clinic and location information for relevant local audiences.','Reels, posts and pinned clinic information','Relevant local reach, profile visits'],['Website','The reliable reference point for approved services, professional information and contact details.','Service pages, team profiles, contact paths','Service-page activity, contact taps'],['Google and local','Accurate information that helps people find the clinic.','Business Profile, pin, hours, photos','Information completeness, direction requests'],['WhatsApp and phone','Clear administrative inquiry responses and appointment information. No diagnosis in messages.','Approved quick replies for location, hours, availability and process','Response clarity and timeliness']];
+const tabs=(tabEl,panelEl,items,render)=>{tabEl.innerHTML=items.map((c,i)=>`<button class="tab" role="tab" aria-selected="${i===0}" aria-controls="${panelEl.id}">${c[0]}</button>`).join('');
+  const show=i=>{[...tabEl.children].forEach((b,j)=>b.setAttribute('aria-selected',j===i));panelEl.innerHTML=render(items[i],i)};
+  tabEl.addEventListener('click',e=>{const b=e.target.closest('.tab');if(b)show([...tabEl.children].indexOf(b))});
+  tabEl.addEventListener('keydown',e=>{if(!['ArrowRight','ArrowLeft'].includes(e.key))return;const bs=[...tabEl.children],i=bs.indexOf(document.activeElement),n=(i+(e.key==='ArrowRight'?1:-1)+bs.length)%bs.length;bs[n].focus();show(n)});
+  show(0)};
+tabs($('chTabs'),$('chPanel'),ch,c=>`<div class="grid" style="gap:12px"><span class="lbl">Channel role</span><h3>${c[0]}</h3><p style="font-size:19px">${c[1]}</p></div><div class="out"><span class="lbl">Main formats</span><p>${c[2]}</p><span class="lbl">Signals we'll watch</span><p>${c[3]}</p></div>`);
+
+const RLM='‏';
+const ser=[['Spine Explained','Educational awareness','هل كل ألم في الضهر معناه غضروف؟','Clinician-led reel',true],['Rehab Explained','Demystify rehabilitation','ليه خطة التأهيل بعد العملية بتختلف من شخص للتاني؟','Short educational reel',true],['Inside V33','Familiarity and trust','What happens at your first physiotherapy assessment?','Carousel',false],['Ask V33','Common educational questions','إمتى أحتاج أراجع متخصص عشان ألم الضهر؟','Clinician-reviewed Q&A',true],['Meet the Team','Professional credibility','Team introductions and verified qualifications','Photo and story series',false]];
+$('series').innerHTML=ser.map((s,i)=>`<div class="card rv ${i===0?'inv':''}"><span class="lbl">${s[1]}</span><h3>${s[0]}</h3>${s[4]?`<p class="ar" dir="rtl" lang="ar" style="text-align:right">${s[2]}${RLM}</p>`:`<p style="color:var(--ink);font-weight:500">${s[2]}</p>`}<span class="chip" style="width:fit-content;font-size:13px">${s[3]}</span></div>`).join('');
+
+const wk=[['1','Introduction and clarity','What V33 specializes in','Clinic and team introduction'],['2','Spine education','Back pain misconceptions','Spine FAQ carousel'],['3','Post-operative rehabilitation','Why rehabilitation plans differ','General recovery-planning explainer'],['4','Trust and patient experience','What to expect at an assessment','Clinic contact and practical information']];
+$('weeks').innerHTML=wk.map(w=>`<tr><td>Week ${w[0]}</td><td>${w[1]}</td><td>${w[2]}</td><td>${w[3]}</td></tr>`).join('');
+
+const tw=[['Week 1','Audit and validate','Use the submitted assessment. Collect existing channel links and insights. Audit public profiles, the website, local presence and comparable brands.',['Digital audit scorecard','Baseline snapshot','Prioritized quick-win list']],['Week 2','Develop creative direction','Positioning and message framework, a social visual moodboard and content pillars. Outline profile and contact improvements.',['Mini digital brand guide','30-day editorial calendar','3 reel scripts and 2 carousel outlines']],['Week 3','Apply selected quick wins','Refine approved profile copy, prepare administrative reply drafts, and develop up to 2 simple pilot assets from existing material.',['Approved profile corrections, where access is given','Up to 2 draft pilot assets','Inquiry-flow draft']],['Week 4','Review and decide','Summarize the work, look at any pilot observations, prioritize the next 90 days, and discuss an optional paid scope.',['Final strategy presentation','KPI dashboard template','90-day paid-phase proposal']]];
+tabs($('wkTabs'),$('wkPanel'),tw,w=>`<div class="grid" style="gap:12px"><span class="lbl">${w[0]}</span><h3>${w[1]}.</h3><p style="font-size:18px">${w[2]}</p></div><div class="out"><span class="lbl">What you receive</span><ul class="dots">${w[3].map(x=>`<li style="color:var(--ink)">${x}</li>`).join('')}</ul></div>`);
+
+const qw=['Correct and approve Instagram and Facebook profile details','Clarify specialty descriptions using verified facts','Align address, hours and contact details','Propose an Instagram highlights structure','Create a recognizable sample post design direction','Draft practical administrative WhatsApp replies','Prepare a website and contact friction list','Set a baseline and a simple reporting dashboard','Present the next 90 days of content and channel priorities'];
+let done=[];try{done=JSON.parse(localStorage.getItem('v33qw')||'[]')}catch(e){done=[]}
+$('qw').innerHTML=qw.map((q,i)=>`<label><input type="checkbox" id="q${i}" ${done.includes(i)?'checked':''}><span>${q}</span></label>`).join('');
+const upd=()=>{const on=[...document.querySelectorAll('#qw input')].map((c,i)=>c.checked?i:-1).filter(i=>i>=0);$('qwCount').textContent=`${on.length} of ${qw.length} done`;$('qwBar').style.width=(on.length/qw.length*100)+'%';try{localStorage.setItem('v33qw',JSON.stringify(on))}catch(e){}};
+$('qw').addEventListener('change',upd);upd();
+
+const kp=[['Top of funnel','Leading indicators',['Relevant reach and impressions','Non-follower reach and profile visits','Video views, watch time and retention','Saves and shares','Publishing consistency in any approved paid phase','Local and business information completeness','Brand-related search interest, where available'],'From day one'],['Mid funnel','Consideration indicators',['Website engagement and service-page activity','Contact-button taps and click-to-message activity','FAQ and content engagement','Clarity and timeliness of administrative replies'],'As pathways improve'],['Long term','Business indicators, owned by V33',['Qualified inquiries','Inquiry-to-booking process effectiveness','Appointment activity and operational capacity','Business costs and profitability trends','Expansion feasibility and operational readiness'],'Aggregate data, where available']];
+tabs($('kTabs'),$('kPanel'),kp,k=>`<div class="grid" style="gap:12px"><span class="lbl">${k[3]}</span><h3>${k[1]}.</h3><p>We track these against a recorded baseline and agreed definitions.</p></div><div class="out"><ul class="dots">${k[2].map(x=>`<li style="color:var(--ink)">${x}</li>`).join('')}</ul></div>`);
+
+const ph=[['Months 2–3','Consistent brand visibility','growth',['Launch an approved monthly publishing plan','Produce and distribute educational content','Keep brand presentation and clinic information accurate','Review engagement quality and update hypotheses']],['Months 4–6','Build consideration, improve the journey','digital',['Strengthen website, service information and contact pathways','Refine content from audience questions and results','Permitted promotion only after legal review and written approval','Connect aggregate marketing insight to inquiries and bookings']],['Months 7–12','Optimize and support business decisions','business',['Keep improving the most effective formats and channel mix','Review performance with clinic operational and financial data','If requested: a separately scoped second-branch readiness assessment']]];
+$('phases').innerHTML=ph.map(p=>`<div class="card phase rv">${pillar(p[2],30)}<span class="when" style="margin-top:8px">${p[0]}</span><h3 style="font-size:20px;color:var(--mute)">${p[1]}</h3><ul class="dots">${p[3].map(x=>`<li>${x}</li>`).join('')}</ul></div>`).join('');
+
+const sc=[['Channel and website audit','Included','Periodic review'],['Positioning and digital brand direction','Included','Implementation and refinement'],['30-day editorial plan','Included','Monthly planning and production'],['Reel scripts and carousel outlines','3 and 2 drafts','As contracted'],['Simple pilot creative assets','Up to 2 drafts','Full design and production scope'],['Routine filming and editing','Excluded','By contract'],['Social publishing and inbox management','Excluded by default','By contract and approvals'],['Paid media','Concepts only','Separate, subject to approvals'],['Website rebuild','Excluded','Separate proposal'],['KPI reporting','Baseline and template','Monthly updates'],['Business and branch feasibility','Direction only','Separate consulting engagement']];
+$('scopeRows').innerHTML=sc.map(r=>`<tr><td>${r[0]}</td><td class="${/Excluded|Concepts|Direction/.test(r[1])?'no':'yes'}">${r[1]}</td><td>${r[2]}</td></tr>`).join('');
+
+const ho=[['Where V33 stands digitally','Findings and available baselines.'],['How V33 should look and sound','Positioning, messaging and visual direction.'],['What V33 should publish','Editorial strategy, series, scripts and calendar.'],['What to fix first','Profiles, local information, website and inquiry pathway.'],['How progress will be evaluated','A practical dashboard and learning questions.'],['What we recommend next','A prioritized 90-day implementation scope, with an optional proposal.']];
+$('handoverGrid').innerHTML=ho.map((h,i)=>`<div class="card rv ${i===5?'inv':''}"><span class="num">${String(i+1).padStart(2,'0')}</span><h3>${h[0]}</h3><p>${h[1]}</p></div>`).join('');
+
+const io=new IntersectionObserver(es=>{for(const e of es)if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}},{threshold:.12});
+for(const el of document.querySelectorAll('.rv'))io.observe(el);
+const links=[...document.querySelectorAll('.nav .links a')];
+const spy=new IntersectionObserver(es=>{for(const e of es)if(e.isIntersecting){const id=e.target.id;links.forEach(a=>a.classList.toggle('on',a.getAttribute('href')==='#'+id))}},{rootMargin:'-45% 0px -50% 0px'});
+for(const a of links){const s=document.querySelector(a.getAttribute('href'));if(s)spy.observe(s)}
+}
+</script>
+</body>
+</html>
